@@ -53,6 +53,3 @@ if streamlit.button('add a Fruit to the List'):
     streamlit.text(back_from_function)
 
 
-
-except URLError as  e:
-  streamlit.error()
