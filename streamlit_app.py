@@ -41,6 +41,20 @@ def get_fruityvice_data(this_fruit_choice):
     return fruityvice_normalized
 
 streamlit.header("Fruityvice Fruit Advice!")
+de insert_row_snowflake(new_fruit):
+    with my_cnx.cursor() as my_cur:
+        my_cur.execute("insert into fruit_load_list values ('from streamlit')")
+        return "Thanks for adding " + new_fruit
+
+add_my_fruit = streamlit.text_input('What fruit would you like to add?')
+if streamlit.button('add a Fruit to the List'):
+    my_cnx = snowflake.connector.connect(**streeamlit.secrets["snowflake"])
+    back_from_function = Insert_row_snowflake(add_my_fruit)
+    streamlit.text(back_from_function)
+
+
+
+
 try:
   fruit_choice = streamlit.text_input('What fruit would you like information about?')
   if not fruit_choice:
@@ -49,9 +63,6 @@ try:
     back_from_function = get_fruityvice_data(fruit_choice)
     streamlit.dataframe(back_from_function)
 
-
-    
-# streamlit.write('The user entered ', fruit_choice)
 
 except URLError as  e:
   streamlit.error()
